@@ -4,9 +4,9 @@
 
 module.exports = function (grunt) {
     var path = require('path');
-    var DOCU_PATH = 'document';
-    var SOURCE_PATH = '../axisj/';
-    
+    var DOCU_PATH = 'docs';
+    var SOURCE_PATH = './axisj/';
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
@@ -90,17 +90,18 @@ module.exports = function (grunt) {
         less: {
             dist: {
                 src: 'less/**/axisjdoc.less',
-                dest: 'static/styles/axisjdoc.css'
+                dest: path.resolve(DOCU_PATH, 'static/styles/axisjdoc.css')
             }
         },
         copy: {
-            css: {
-                src: 'static/styles/axisjdoc.css',
-                dest: DOCU_PATH + '/styles/axisjdoc.css'
-            },
-            js: {
-                src: 'static/scripts/main.js',
-                dest: DOCU_PATH + '/scripts/main.js'
+            main: {
+              files: [
+                {
+                  expand: true,
+                  src: ['static/**'],
+                  dest: DOCU_PATH
+                }
+              ]
             }
         },
 	    wkhtmltopdf: {
@@ -182,16 +183,19 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('axisj_jsdoc_bulid', 'Create documentations for demo', [
-        'less',
         'clean:demo',
-        'jsdoc:demo'
+
+        'less',
+        'copy',
+
+        'jsdoc:demo',
     ]);
 
 	grunt.registerTask('axisj_jsdoc_topdf', 'Create documentations for pdf', [
 		'wkhtmltopdf:dev'
 	]);
-	
-	
+
+
 	//npm install grunt-contrib-watch --save-dev
 	//npm install grunt-contrib-copy --save-dev
 	//npm install grunt-contrib-clean --save-dev
