@@ -90,7 +90,7 @@ module.exports = function (grunt) {
         less: {
             dist: {
                 src: 'less/**/axisjdoc.less',
-                dest: path.resolve(DOCU_PATH, 'static/styles/axisjdoc.css')
+                dest: path.resolve(DOCU_PATH, 'styles/axisjdoc.css')
             }
         },
         copy: {
@@ -98,7 +98,8 @@ module.exports = function (grunt) {
               files: [
                 {
                   expand: true,
-                  src: ['static/**'],
+                  cwd: 'static/',
+                  src: '**/*',
                   dest: DOCU_PATH
                 }
               ]
