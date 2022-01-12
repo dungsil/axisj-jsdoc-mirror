@@ -1,3 +1,13 @@
+# [AXISJ JSDOC 미러](https://axisj.kyg.kr/)
+
+AXISJ 공식 문서 페이지 로드가 너무 느려서 제공하는 미러사이트입니다.
+
+###### 벤치마크
+ - [기존](http://jdoc.axisj.com/document/index.html): 33.87s
+ - [미러](https://axisj.kyg.kr/): 770ms
+ 
+----------------------------------------
+
 forked from davidshimjs/jaguarjs-jsdoc
 
 axisj-jsdoc
